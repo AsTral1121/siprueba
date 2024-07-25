@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta - Repostería El Encanto</title>
+    <style>
+        /* Estilos para el diseño del teléfono */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .phone-frame {
+            width: 375px;
+            height: 667px;
+            border: 16px solid #333;
+            border-top: 60px solid #333;
+            border-bottom: 60px solid #333;
+            border-radius: 36px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .screen {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2 {
+            color: #ff6f61;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+        .user-info {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .payment-methods {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        .payment-method {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .payment-method span {
+            font-size: 1rem;
+        }
+        .logout-button, .delete-button, .back-button {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: center;
+        }
+        .logout-button:hover, .delete-button:hover, .back-button:hover {
+            background-color: #ff8a71;
+        }
+        .delete-button {
+            background-color: #dc3545;
+            width: auto;
+            padding: 0.3rem 0.5rem;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame">
+        <div class="screen">
+            <div class="container">
+                <button class="back-button" onclick="regresar()">Regresar</button>
+                <h2>Mi Cuenta</h2>
+                <div class="user-info">
+                    <p id="user-name">Nombre de Usuario: <span id="username"></span></p>
+                </div>
+                <div class="payment-methods">
+                    <h3>Metodos de Pago Guardados</h3>
+                    <div class="payment-method">
+                        <span>Visa **** 1234</span>
+                        <button class="delete-button" onclick="eliminarMetodoPago(this)">Eliminar</button>
+                    </div>
+                    <div class="payment-method">
+                        <span>Mastercard **** 5678</span>
+                        <button class="delete-button" onclick="eliminarMetodoPago(this)">Eliminar</button>
+                    </div>
+                    <!-- Más métodos de pago pueden ser añadidos aquí -->
+                </div>
+                <button class="logout-button" onclick="salir()">Salir de la Cuenta</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ejemplo de cómo se puede obtener y mostrar el nombre de usuario
+        document.getElementById('username').textContent = localStorage.getItem('userName') || 'Usuario';
+
+        function eliminarMetodoPago(button) {
+            // Lógica para eliminar el método de pago
+            button.parentElement.remove();
+            alert('Método de pago eliminado');
+        }
+
+        function salir() {
+            // Lógica para cerrar la sesión
+            localStorage.removeItem('authToken');
+            window.location.href = 'principal.html'; // Ajusta esta URL a la página de inicio de sesión
+        }
+
+        function regresar() {
+            window.location.href = 'index.html'; // Ajusta esta URL a la página principal
+        }
+    </script>
+</body>
+</html>
